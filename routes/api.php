@@ -19,12 +19,15 @@ use App\Http\Controllers\API\DayaTampungController;
 
 Route::post('register', [RegisterController::class, 'register']);
 Route::post('login', [RegisterController::class, 'login']);
+
+Route::get('list/jurusan', [DayaTampungController::class, 'getAllJurusan']);
+Route::get('list/universitas', [DayaTampungController::class, 'getAllKampus']);
+
+Route::get('dayatampungs/jurusan/{kode}', [DayaTampungController::class, 'getAllByJurusan']);
+Route::get('dayatampungs/kampus/{kode}/tahun/{tahun}', [DayaTampungController::class, 'getAllByKampusAndTahun']);
+Route::get('dayatampungs/namajurusan/{nama}', [DayaTampungController::class, 'getAllByNamaJurusan']);
+Route::get('dayatampungs/namajurusan/{nama}/tahun/{tahun}', [DayaTampungController::class, 'getAllByNamaJurusanAndTahun']);
      
 Route::middleware('auth:api')->group(function () {
     Route::resource('dayatampungs', DayaTampungController::class);
-
-    Route::get('dayatampungs/jurusan/{kode}', [DayaTampungController::class, 'getAllByJurusan']);
-    Route::get('dayatampungs/kampus/{kode}/tahun/{tahun}', [DayaTampungController::class, 'getAllByKampusAndTahun']);
-    Route::get('dayatampungs/namajurusan/{nama}', [DayaTampungController::class, 'getAllByNamaJurusan']);
-    Route::get('dayatampungs/namajurusan/{nama}/tahun/{tahun}', [DayaTampungController::class, 'getAllByNamaJurusanAndTahun']);
 });
