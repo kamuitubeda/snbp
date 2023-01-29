@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\API\RegisterController;
+use App\Http\Controllers\API\JurusanController;
+use App\Http\Controllers\API\UniversitasController;
 use App\Http\Controllers\API\DayaTampungController;
 
 /*
@@ -20,8 +22,10 @@ use App\Http\Controllers\API\DayaTampungController;
 Route::post('register', [RegisterController::class, 'register']);
 Route::post('login', [RegisterController::class, 'login']);
 
-Route::get('list/jurusan', [DayaTampungController::class, 'getAllJurusan']);
-Route::get('list/universitas', [DayaTampungController::class, 'getAllKampus']);
+Route::get('list/jurusan', [JurusanController::class, 'getAllJurusan']);
+Route::get('list/universitas', [UniversitasController::class, 'getAllUniversitas']);
+Route::get('list/jurusan/{id}/tahun/{tahun}', [JurusanController::class, 'getJurusanByIdTahun']);
+Route::get('list/universitas/{id}/tahun/{tahun}', [UniversitasController::class, 'getUniversitasByIdTahun']);
 
 Route::get('dayatampungs/jurusan/{kode}', [DayaTampungController::class, 'getAllByJurusan']);
 Route::get('dayatampungs/kampus/{kode}/tahun/{tahun}', [DayaTampungController::class, 'getAllByKampusAndTahun']);

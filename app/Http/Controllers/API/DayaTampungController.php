@@ -103,28 +103,6 @@ class DayaTampungController extends BaseController
         return $this->sendResponse([], 'Daya Tampung deleted successfully.');
     }
 
-    public function getAllJurusan()
-    {
-        $dayaTampungs = DayaTampung::distinct()->orderBy('nama_jurusan', 'asc')->get(['nama_jurusan']);
-
-        if (is_null($dayaTampungs)) {
-            return $this->sendError('Daya Tampung not found.');
-        }
-      
-        return $this->sendResponse(DayaTampungResource::collection($dayaTampungs), 'Daya Tampungs retrieved successfully.');
-    }
-
-    public function getAllKampus()
-    {
-        $dayaTampungs = DayaTampung::distinct()->orderBy('nama_universitas', 'asc')->get(['nama_universitas']);
-
-        if (is_null($dayaTampungs)) {
-            return $this->sendError('Daya Tampung not found.');
-        }
-      
-        return $this->sendResponse(DayaTampungResource::collection($dayaTampungs), 'Daya Tampungs retrieved successfully.');
-    }
-
     public function getAllByJurusan($kode)
     {
         $dayaTampungs = DayaTampung::where('kode', $kode)->get();
