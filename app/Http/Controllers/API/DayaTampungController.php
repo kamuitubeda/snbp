@@ -105,7 +105,7 @@ class DayaTampungController extends BaseController
 
     public function getAllByJurusan($kode)
     {
-        $dayaTampungs = DayaTampung::where('kode', $kode)->get();
+        $dayaTampungs = DayaTampung::where('kode', $kode)->orderBy('tahun', 'desc')->get();
 
         if (is_null($dayaTampungs)) {
             return $this->sendError('Daya Tampung not found.');
